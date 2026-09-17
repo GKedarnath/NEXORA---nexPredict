@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#070b16" />
+  <meta name="description" content="NEXORA: What Will You Choose Next? An interactive behavioural prediction experience from the IT Club at TAPMI Bengaluru." />
+  <title>NEXORA — What Will You Choose Next?</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient" aria-hidden="true">
+    <span class="orb orb-a"></span>
+    <span class="orb orb-b"></span>
+    <span class="orb orb-c"></span>
+    <span class="grid-fade"></span>
+  </div>
+
+  <a class="skip-link" href="#app">Skip to experience</a>
+
+  <div class="app-shell" id="app">
+    <header class="topbar">
+      <div class="brand">
+        <p class="brand-kicker">IT Club | TAPMI Bengaluru</p>
+        <p class="brand-name">NEXORA</p>
+      </div>
+      <div class="topbar-meta">
+        <p class="event-chip">Global Leadership Conference 4.0</p>
+        <p class="session-chip" id="session-counter" aria-live="polite">Decision #1</p>
+      </div>
+    </header>
+
+    <main class="stage">
+      <section class="screen is-active" id="screen-landing" data-screen="landing" aria-labelledby="landing-title">
+        <p class="eyebrow">NEXORA · Behavioural experiment</p>
+        <h1 id="landing-title" tabindex="-1">Think You Know Your Next Move?</h1>
+        <p class="lede">Answer 6 quick questions. We'll try to predict what you'll choose next.</p>
+        <button class="cta cta-primary" id="btn-start" type="button">
+          Challenge the Algorithm <span aria-hidden="true">→</span>
+        </button>
+        <p class="micro">No login. No personal data. Just your choices. About 2 minutes.</p>
+      </section>
+
+      <section class="screen" id="screen-quiz" data-screen="quiz" hidden aria-labelledby="question-prompt">
+        <div class="quiz-progress">
+          <div class="progress-meta">
+            <p class="progress-label" id="progress-label">Question 1 of 6</p>
+            <p class="progress-index" id="progress-index" aria-hidden="true">01 / 06</p>
+          </div>
+          <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="6" aria-valuenow="1" id="progress-bar">
+            <span class="progress-fill" id="progress-fill"></span>
+          </div>
+        </div>
+        <h2 class="question-prompt" id="question-prompt" tabindex="-1"></h2>
+        <div class="options-grid" id="options-grid" role="group" aria-labelledby="question-prompt"></div>
+        <p class="status-line" id="choice-ack" aria-live="polite"></p>
+      </section>
+
+      <section class="screen" id="screen-analyse" data-screen="analyse" hidden aria-live="polite" aria-labelledby="analyse-title">
+        <div class="analyse-orb" aria-hidden="true"></div>
+        <p class="eyebrow">Algorithmic interpretation</p>
+        <h2 id="analyse-title" tabindex="-1">Analysing your decisions...</h2>
+        <p class="lede" id="analyse-sub">Mapping patterns across the six choices you just made.</p>
+      </section>
+
+      <section class="screen" id="screen-result" data-screen="result" hidden aria-labelledby="prediction-headline">
+        <p class="eyebrow">Your next move</p>
+        <p class="signature-pill" id="decision-signature"></p>
+        <h2 id="prediction-headline" tabindex="-1"></h2>
+        <p class="prediction-statement" id="prediction-statement"></p>
+
+        <div class="confidence-panel">
+          <div class="confidence-copy">
+            <p class="confidence-label">Algorithm confidence</p>
+            <p class="confidence-value" id="confidence-value">—</p>
+          </div>
+          <div class="meter" aria-hidden="true">
+            <span class="meter-fill" id="confidence-meter"></span>
+          </div>
+          <p class="fine-print">Derived from how clearly your choices separated one prediction from the others. Not a scientific accuracy claim.</p>
+        </div>
+
+        <div class="why-block">
+          <h3>Why we think so</h3>
+          <p id="why-copy"></p>
+        </div>
+
+        <div class="profile-block">
+          <h3>Your decision profile</h3>
+          <ul class="profile-bars" id="profile-bars"></ul>
+        </div>
+
+        <div class="challenge-prompt">
+          <h3>Think we're wrong?</h3>
+          <div class="cta-row">
+            <button class="cta cta-primary" id="btn-test" type="button">Let's Test It</button>
+            <button class="cta cta-ghost" id="btn-why" type="button">Show Me Why</button>
+          </div>
+        </div>
+
+        <div class="why-extra" id="why-extra" hidden>
+          <p id="why-extra-copy"></p>
+        </div>
+
+        <div class="nexora-invite">
+          <p>Enjoyed challenging the algorithm?</p>
+          <p class="invite-lead">That's what we love building at NEXORA.</p>
+          <p class="brand-footer">NEXORA — IT Club, TAPMI Bengaluru</p>
+          <p class="tagline">Build. Experiment. Predict what's next.</p>
+          <button class="cta cta-ghost" id="btn-meet" type="button">Meet the NEXORA Team →</button>
+        </div>
+
+        <div class="result-actions">
+          <button class="cta cta-primary" id="btn-share" type="button">Share My Result</button>
+          <button class="cta cta-reset" id="btn-reset-result" type="button">Next Participant →</button>
+        </div>
+        <p class="share-feedback" id="share-feedback" aria-live="polite"></p>
+      </section>
+
+      <section class="screen" id="screen-challenge" data-screen="challenge" hidden aria-labelledby="challenge-title">
+        <p class="eyebrow">Final prediction challenge</p>
+        <h2 id="challenge-title" tabindex="-1">You have one choice left. Which one do you pick?</h2>
+        <p class="lede">Four genuine options. We already have a prediction. We will not steer you toward it.</p>
+        <div class="options-grid" id="challenge-grid" role="group" aria-labelledby="challenge-title"></div>
+      </section>
+
+      <section class="screen" id="screen-verdict" data-screen="verdict" hidden aria-labelledby="verdict-title">
+        <p class="eyebrow" id="verdict-eyebrow">Beat the algorithm</p>
+        <h2 id="verdict-title" tabindex="-1"></h2>
+        <p class="lede" id="verdict-copy"></p>
+        <p class="verdict-choice" id="verdict-choice"></p>
+        <div class="result-actions">
+          <button class="cta cta-ghost" id="btn-back-result" type="button">Back to full result</button>
+          <button class="cta cta-reset" id="btn-reset-verdict" type="button">Next Participant →</button>
+        </div>
+        <div class="nexora-invite compact">
+          <p class="brand-footer">NEXORA — IT Club, TAPMI Bengaluru</p>
+          <p class="tagline">Build. Experiment. Predict what's next.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="legal">
+      <p>This is an interactive behavioural experiment, not a psychological diagnosis or a validated personality test.</p>
+      <p>Your answers stay on this device and are used only for this interactive experience.</p>
+    </footer>
+  </div>
+
+  <div class="modal" id="meet-modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="meet-title">
+      <h2 id="meet-title">Meet the NEXORA team</h2>
+      <p>You're already at the stall. Say hello to the volunteers running this experience — they'd love to talk about what NEXORA is building next.</p>
+      <button class="cta cta-primary" id="btn-close-meet" type="button">Got it</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
